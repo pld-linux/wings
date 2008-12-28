@@ -7,6 +7,7 @@ License:	BSD
 Group:		Applications
 Source0:	http://downloads.sourceforge.net/wings/wings-%{version}.tar.bz2
 # Source0-md5:	148f28cd97c8d3d2426b34b53c385cb5
+Patch0:		%{name}-pic.patch
 URL:		http://www.wings3d.com/
 BuildRequires:	OpenGL-devel
 BuildRequires:	erlang
@@ -24,9 +25,10 @@ There is no support in Wings for doing animations.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{__make} -j1 \
+%{__make} -j1 unix \
 	ESDL_PATH=%{_libdir}/erlang/lib/esdl
 
 %install
